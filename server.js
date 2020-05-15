@@ -8,7 +8,9 @@ const mongoose =  require('mongoose');
 app = express();
 app.set('view engine' , 'ejs');
 app.use(express.static('public'));
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : true}));
+
 //Static Global Variables ::
 dotenv.config();
 const PORT = process.env.PORT
@@ -16,10 +18,10 @@ const mongoURI = process.env.mongoURI;
 
 //Importing routes
 const indexRouter = require('./Routes/indexRoute');
-
+const dbRouter =  require('./Routes/dbRoute')
 
 //Using Routes
-
+app.use(dbRouter);
 app.use(indexRouter);
 
 mongoose.connect(mongoURI , {
