@@ -7,5 +7,11 @@
 </head>
 <body>
     <h1>DB</h1>
+    <h2>list Of DataBase : </h2>
+    <% for( let index = 0; index < list.length; index++ ) { %>
+        <hr>
+        <h3><%= list[index]  %> </h3>
+        <h3>Visit this Data Base here : <a href="/<%= list[index] %> ">LINK</a></h3>
+    <% } %>
 </body>
 </html>

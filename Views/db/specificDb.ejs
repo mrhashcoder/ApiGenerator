@@ -8,5 +8,14 @@
 <body>
     <h1>welcome to dataBase</h1>
     <h1>data-base : <%= dbname %> </h1>
+    <hr>
+    <h2>These are the colllection available here : </h2>
+    <% for( let index = 0; index < list.length; index++ ) { %>
+        <hr>
+        <h3><%= list[index] %> </h3>
+        <h3>Insert Data : <a href="#">link</a></h3>
+    <% } %>
+        <hr>
+    <h2>Create New Colletion here : <a href="/<%= dbname %>/createcollection">Link</a></h2>
 </body>
 </html>

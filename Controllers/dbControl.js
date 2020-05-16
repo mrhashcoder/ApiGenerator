@@ -2,8 +2,13 @@ const Db = require('../Models/db');
 const Collection = require('../Models/collection');
 
 
-exports.getdb = (req,res) =>{
-    res.render('db/db')
+exports.getdb = async(req,res) =>{
+    const listOfDb = await Db.find();
+    const namesOfDb = new Array();
+    for(var i = 0 ; i  < listOfDb.length ; i++){
+        namesOfDb.push(listOfDb[i]['dbname']);
+    }
+    res.render('db/db' , {list : namesOfDb});
 }
 
 exports.postCreateDb = async(req,res) => {
@@ -40,15 +45,22 @@ exports.getSpecificDb = async(req,res) =>{
     try{
         var dbname = req.params.dbname; 
         var findDb = await Db.findOne({dbname : dbname});
+        var listOfCollection = await Collection.find({dbname : dbname});
+        var nameOfCollections = new Array()
+        for(var i = 0 ; i < listOfCollection.length ; i++){
+            nameOfCollections.push(listOfCollection[i]['collectionname']);
+        }
+        console.log(nameOfCollections);
         if(findDb){
-            res.render('db/specificDb' , {dbname : dbname});
+            res.render('db/specificDb' , {dbname : dbname , list : nameOfCollections});
         }
         else{
-            res.rendeR('error' , {mesg : "database not found"});
+            res.render('error' , {mesg : "database not found"});
         }
     }
     catch(err){
-        console.log("errror");
+        console.log(err);
+        res.redirect('/db');
     }
 }
 
