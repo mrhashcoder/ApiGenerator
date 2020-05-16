@@ -1,5 +1,5 @@
 const Db = require('../Models/db');
-
+const Collection = require('../Models/collection');
 
 
 exports.getdb = (req,res) =>{
@@ -59,13 +59,30 @@ exports.getCreateCollecion = (req , res) =>{
 
 exports.postCreateCollection = async(req , res) =>{
     const body = req.body;
-    console.log(body);    
+    //console.log(body);
+    const num = body['numOfEnt']
+    console.log(num);
+    const listOFEnt = new Array();
 
+    for(var i = 1 ; i <= num ; i++){
+        var Ent = "Ent" + i;
+        //console.log(body[Ent]);
+        listOFEnt.push(body[Ent]);
+    }
+    const collectionName = body['collectionname'];
+    const dbname = req.params.dbname;
     try{
-        res.redirect('/db');
+        const newCollection = new Collection({
+            dbname : dbname,
+            collectionname : collectionName,
+            listOfEnt : listOFEnt,
+            noOfEnt : num
+        });
+        await newCollection.save();
+        res.redirect('/' + dbname);
     }catch(err){
         console.log('error');
-        res.redirect('/db');
+        res.redirect('/' + dbname);
     }
 }
 

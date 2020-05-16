@@ -32,7 +32,7 @@
             const formBox = document.getElementById('formBox');
                 
             const collectionForm = document.createElement('form');
-            collectionForm.setAttribute("action" , "/" + dbname +"/createcolletion");
+            collectionForm.setAttribute("action" , "/" + dbname +"/createcollection");
             collectionForm.setAttribute("method" , "POST");
 
             formBox.appendChild(collectionForm);
@@ -42,11 +42,13 @@
             line1.innerHTML = "Number Of Entities : ";
             collectionForm.append(line1);
             const numBox = document.createElement('input');
+            numBox.setAttribute('type' , 'text');
+            numBox.setAttribute('name' , 'numOfEnt');
             numBox.value = num;
-            collectionForm.append(numBox);
+            collectionForm.append(numBox);            
+            var bre1 = document.createElement('br');
 
-            collectionForm.append(bre);
-            collectionForm.append(bre);
+            collectionForm.append(bre1);
             var line = document.createElement('lable');
             line.innerHTML = "Colletion Name : ";
 
@@ -55,7 +57,7 @@
             inputElement.setAttribute('type' , "text");
             inputElement.setAttribute('name' , "collectionname");
             inputElement.setAttribute('id' , "collectionname");
-
+            inputElement.attributes.re
             collectionForm.append(inputElement);            
             collectionForm.append(bre);
             for(var i = 1 ; i <= num ; i++){

@@ -9,6 +9,6 @@ router.get('/:dbname' , dbControl.getSpecificDb);
 router.get('/:dbname/createcollection' , dbControl.getCreateCollecion);
 
 router.post('/createdb' , dbControl.postCreateDb);
-router.post('/:dbname/createcolletion', dbControl.postCreateCollection);
+router.post('/:dbname/createcollection', dbControl.postCreateCollection);
 
 module.exports = router;

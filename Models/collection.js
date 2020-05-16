@@ -2,9 +2,13 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const CollectionSchema = new Schema({
-    dbid : {
+    dbname : {
         type : String,
         required : true
+    },
+    collectionname :{
+        type:String,
+        required:true
     },
     noOfEnt : {
         type : Number,
