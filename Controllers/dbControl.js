@@ -22,7 +22,7 @@ exports.postCreateDb = async(req,res) => {
                 dbid : getDbId()
             });
             newDb.save();
-            res.redirect('/db')
+            res.redirect('/' + dbname);
         }
         
     }
@@ -36,6 +36,38 @@ exports.getCreateDb = (req, res) => {
     res.render('db/createDb');
 }
 
+exports.getSpecificDb = async(req,res) =>{
+    try{
+        var dbname = req.params.dbname; 
+        var findDb = await Db.findOne({dbname : dbname});
+        if(findDb){
+            res.render('db/specificDb' , {dbname : dbname});
+        }
+        else{
+            res.rendeR('error' , {mesg : "database not found"});
+        }
+    }
+    catch(err){
+        console.log("errror");
+    }
+}
+
+exports.getCreateCollecion = (req , res) =>{
+    const dbname = req.params.dbname;
+    res.render('db/createCollection' , {'dbname' : dbname});
+}
+
+exports.postCreateCollection = async(req , res) =>{
+    const body = req.body;
+    console.log(body);    
+
+    try{
+        res.redirect('/db');
+    }catch(err){
+        console.log('error');
+        res.redirect('/db');
+    }
+}
 
 
 

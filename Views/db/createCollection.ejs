@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Collection</title>
+    <style>
+        #formBox{
+            border: solid 2px #aaa;
+            display:block;
+        }
+        form{
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <h1>DB : <span id="dbname"><%= dbname %></span></h1>
+    <h1>Create Collection</h1>
+    <h3>Enter the Number of Entity for the collection</h3>
+    <input type="number" name="num" id="num">
+    <button onclick="generate()">Generate Schema</button>
+    <hr><br><br>
+    <div id="formBox"></div>
+
+
+    <script>
+        function generate() {
+            const dbname = document.getElementById('dbname').innerHTML;
+            console.log(dbname);
+            const num = parseInt(document.getElementById('num').value);
+            const formBox = document.getElementById('formBox');
+                
+            const collectionForm = document.createElement('form');
+            collectionForm.setAttribute("action" , "/" + dbname +"/createcolletion");
+            collectionForm.setAttribute("method" , "POST");
+
+            formBox.appendChild(collectionForm);
+
+            var bre = document.createElement('br');
+            const line1 = document.createElement('lable')
+            line1.innerHTML = "Number Of Entities : ";
+            collectionForm.append(line1);
+            const numBox = document.createElement('input');
+            numBox.value = num;
+            collectionForm.append(numBox);
+
+            collectionForm.append(bre);
+            collectionForm.append(bre);
+            var line = document.createElement('lable');
+            line.innerHTML = "Colletion Name : ";
+
+            collectionForm.append(line);
+            var inputElement = document.createElement('input');
+            inputElement.setAttribute('type' , "text");
+            inputElement.setAttribute('name' , "collectionname");
+            inputElement.setAttribute('id' , "collectionname");
+
+            collectionForm.append(inputElement);            
+            collectionForm.append(bre);
+            for(var i = 1 ; i <= num ; i++){
+                var line = document.createElement('lable');
+                line.innerHTML = "Entity " + i;
+                collectionForm.append(line);
+
+                var inputElement = document.createElement('input');
+                inputElement.setAttribute('type' , 'text');
+                var entName = "Ent" + i;
+                inputElement.setAttribute('name' , entName);
+                inputElement.setAttribute('id' , entName);
+                collectionForm.append(inputElement);
+
+                var bre = document.createElement('br');
+                collectionForm.append(bre);
+            }  
+            
+            var submit = document.createElement('input');
+            submit.setAttribute('type' , 'submit');
+            submit.setAttribute('value', 'Create Colletion');
+            collectionForm.append(submit);
+
+        }
+    </script>
+</body>
+</html>
