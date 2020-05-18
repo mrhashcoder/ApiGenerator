@@ -50,7 +50,6 @@ exports.getSpecificDb = async(req,res) =>{
         for(var i = 0 ; i < listOfCollection.length ; i++){
             nameOfCollections.push(listOfCollection[i]['collectionname']);
         }
-        console.log(nameOfCollections);
         if(findDb){
             res.render('db/specificDb' , {dbname : dbname , list : nameOfCollections});
         }
@@ -73,7 +72,6 @@ exports.postCreateCollection = async(req , res) =>{
     const body = req.body;
     //console.log(body);
     const num = body['numOfEnt']
-    console.log(num);
     const listOFEnt = new Array();
 
     for(var i = 1 ; i <= num ; i++){
