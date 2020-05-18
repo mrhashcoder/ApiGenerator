@@ -10,7 +10,7 @@ const dataSchema = new Schema({
         type : String,
         required:true
     },
-    jsonData : {
+    jsondata : {
         type : String,
         required : true,
     }

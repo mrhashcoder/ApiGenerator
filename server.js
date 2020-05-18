@@ -18,11 +18,13 @@ const mongoURI = process.env.mongoURI;
 
 //Importing routes
 const indexRouter = require('./Routes/indexRoute');
-const dbRouter =  require('./Routes/dbRoute')
+const dbRouter =  require('./Routes/dbRoute');
+const dataRouter = require('./Routes/dataRoute');
 
 //Using Routes
 app.use(dbRouter);
 app.use(indexRouter);
+app.use(dataRouter);
 
 mongoose.connect(mongoURI , {
     useCreateIndex: true,

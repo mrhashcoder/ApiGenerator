@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <title>Insert Data</title>
+</head>
+<body>
+    <h1>Insert Data</h1>
+    <h2>Data Base : <span id="dbname"><%= dbname  %></span></h2>
+    <h2>Collection Name : <span id="collectionname"><%= collectionname  %></span></h2>
+    <div hidden>
+        <p id="num"><%= num %> </p>
+        <% for( let index = 0; index < list.length; index++ ) { %>
+            <p id="Ent<%= index %>"><%= list[index] %></p>
+        <% } %> 
+    </div>
+    <h2>Fill the Data Form </h2>
+    <div id="FormBox">
+
+    </div>
+    <script>
+        const num = parseInt(document.getElementById('num').innerHTML);
+        const dbname =  document.getElementById('dbname').innerHTML;
+        const collectionname = document.getElementById('collectionname').innerHTML;
+
+        var listOFEnt = new Array();
+        for(var i = 0 ; i < num ; i++){
+            var idname = "Ent" + i;
+            var EntName = document.getElementById(idname).innerHTML;
+            listOFEnt.push(EntName);
+        }
+        console.log(listOFEnt , num , dbname, collectionname);
+    
+        var formBox = document.getElementById('FormBox');
+        var dataForm = document.createElement('form');
+        dataForm.setAttribute('action' ,"/"+dbname+"/"+collectionname+"/insertdata");
+        dataForm.setAttribute('method' , 'POST');
+        formBox.append(dataForm);
+
+        for(var i = 0 ; i < num ; i++){
+            var label = document.createElement('label').innerHTML = listOFEnt[i]
+            dataForm.append(label);
+
+            var input = document.createElement('input');
+            input.setAttribute('name' , listOFEnt[i]);
+            input.setAttribute('id' , listOFEnt[i]);
+
+            dataForm.append(input);
+
+            dataForm.append(document.createElement('br'));
+        }
+
+        var submit = document.createElement('input');
+        submit.setAttribute('type' , 'submit');
+        submit.setAttribute('value' , 'Insert Data');
+        dataForm.append(submit)
+
+    </script>
+</body>
+</html>
