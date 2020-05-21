@@ -18,8 +18,12 @@
         <h3><%= list[index] %> </h3>
         <h3>Insert Data : <a href="/<%= dbname %>/<%= list[index] %>/insertdata">link</a></h3>
         <h3>Show Data : <a href="/<%= dbname %>/<%= list[index] %>">link</a></h3>
+        <h3>API of this Collection : <a href="/api/<%= dbname %>/<%= list[index] %>">link</a></h3>
     <% } %>
         <hr>
     <h2>Create New Colletion here : <a href="/<%= dbname %>/createcollection">Link</a></h2>
+
+    <hr>
+    <h1>API of this DataBase is here : <a href="/api/<%= dbname %>">Link</a></h1>
 </body>
 </html>

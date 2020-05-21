@@ -9,6 +9,8 @@
 <body>
     <h1>Welcome to Collection</h1>
     <h2>Collection Schema : </h2>
+    <h2><a href="/db">All Database</a></h2>
+    <h2><a href="/<%= dbname %> "><%= dbname %> </a></h2>
     <div style="border: solid black 2px ; margin:10px">
         <h3>DataBase : <%= dbname %> </h3>
         <h3>Name : <%= collectionname %> </h3>
@@ -22,16 +24,20 @@
         <div style="border: solid black 2px ; margin:10px">
             <h2>Uploaded Data to this Collection : </h2>
             <hr>
-            <% dataCol.forEach(data => { %>
+            <% var index = 0 %>
+            <% dataCol.forEach(data => { %>                 
                 <%Ents.forEach(ent => { %>
                     <h3>
                         <span><%= ent %> : </span>
                         <span><%= data[ent] %> </span>
+                        <span>API here : <a href="/api/<%= dbname %>/<%= collectionname %>/<%= index %>">link</a></span>
                     </h3>
                 <% }) %>
+                <% index += 1 %> 
                 <hr>
             <% }) %>    
         </div>
+        <h3>API of this Collection : <a href="/api/<%= dbname %>/<%= collectionname %>">link</a></h3>
     </div>
 </body>
 </html>

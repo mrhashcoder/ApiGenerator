@@ -6,7 +6,7 @@ exports.indexControl = (req , res) => {
 
 
 exports.errorControl = (req, res) =>{
-    res.render('error');
+    res.render('error',{mesg : "Some ERROR"});
 }
 
 

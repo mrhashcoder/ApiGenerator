@@ -17,14 +17,17 @@ const PORT = process.env.PORT
 const mongoURI = process.env.mongoURI;
 
 //Importing routes
+const apiRouter = require('./Routes/ApiRoute');
 const indexRouter = require('./Routes/indexRoute');
 const dbRouter =  require('./Routes/dbRoute');
 const dataRouter = require('./Routes/dataRoute');
 
 //Using Routes
-app.use(dbRouter);
+
+app.use(apiRouter);
 app.use(indexRouter);
 app.use(dataRouter);
+app.use(dbRouter);
 
 mongoose.connect(mongoURI , {
     useCreateIndex: true,

@@ -6,7 +6,7 @@ exports.getInsertData = async(req,res) => {
         const dbname = req.params.dbname;
         const collectionname = req.params.collectionname;
 
-        const collectionFind = await Collection.findOne({collectionname : collectionname , dbname : dbname});
+        const collectionFind = await Collection.findOne({$and : [{dbname : dbname} , {collectionname : collectionname}]});
         var list = new Array();
         var num = 0;
        // console.log(collectionFind);
