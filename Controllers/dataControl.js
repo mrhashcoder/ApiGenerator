@@ -60,7 +60,7 @@ exports.postInsertData = async(req , res) => {
             jsondata : jsonStr
         });
         await newData.save();
-        res.redirect('/'+dbname);
+        res.redirect('/'+dbname+'/' + collectionname);
         
     }catch(err){
         console.log(err);

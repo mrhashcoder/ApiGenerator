@@ -19,9 +19,18 @@
             <% } %>
         </h3>
 
-        <div>
-            <h3>Uploaded Data to this Collection : </h3>
-            
+        <div style="border: solid black 2px ; margin:10px">
+            <h2>Uploaded Data to this Collection : </h2>
+            <hr>
+            <% dataCol.forEach(data => { %>
+                <%Ents.forEach(ent => { %>
+                    <h3>
+                        <span><%= ent %> : </span>
+                        <span><%= data[ent] %> </span>
+                    </h3>
+                <% }) %>
+                <hr>
+            <% }) %>    
         </div>
     </div>
 </body>

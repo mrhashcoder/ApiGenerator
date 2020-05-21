@@ -104,12 +104,18 @@ exports.getSpecificCollection = async(req,res) =>{
         var colletionFind = await Collection.findOne({$and : [{dbname : dbname} , {collectionname : collectionname}]});
         //console.log(colletionFind);
         var listOfEnt =  colletionFind['listOfEnt'];
-        console.log(listOfEnt);
         var dataOfCollection = await Data.find({$and: [{dbname : dbname} , {collectionname : collectionname}]});
-        //console.log(dataOfCollection)
+        var dataArray = new Array();
+        for(var i = 0 ; i < dataOfCollection.length ; i++){
+            var jsonStr = dataOfCollection[i]['jsondata'];
+            var jsond = JSON.parse(jsonStr);
+            dataArray.push(jsond);
+        }
+        //console.log(dataArray);
+
         var renderData = {
             Ents : listOfEnt,
-            dataCol : dataOfCollection,
+            dataCol : dataArray,
             dbname : dbname,
             collectionname : collectionname
         };
