@@ -5,4 +5,8 @@ exports.indexControl = (req , res) => {
 };
 
 
+exports.errorControl = (req, res) =>{
+    res.render('error');
+}
+
 

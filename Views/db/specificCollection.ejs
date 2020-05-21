@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collection</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<body>
+    <h1>Welcome to Collection</h1>
+    <h2>Collection Schema : </h2>
+    <div style="border: solid black 2px ; margin:10px">
+        <h3>DataBase : <%= dbname %> </h3>
+        <h3>Name : <%= collectionname %> </h3>
+        <h3>Number of Enteries : <%= Ents.length %> </h3>
+        <h3>Elements of Collection : 
+            <% for( let index = 0; index < Ents.length; index++ ) { %>
+                <span><%= Ents[index] %>,  </span>
+            <% } %>
+        </h3>
+
+        <div>
+            <h3>Uploaded Data to this Collection : </h3>
+            
+        </div>
+    </div>
+</body>
+</html>

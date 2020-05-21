@@ -1,6 +1,6 @@
 const Db = require('../Models/db');
 const Collection = require('../Models/collection');
-
+const Data = require('../Models/data');
 
 exports.getdb = async(req,res) =>{
     const listOfDb = await Db.find();
@@ -96,6 +96,30 @@ exports.postCreateCollection = async(req , res) =>{
     }
 }
 
+exports.getSpecificCollection = async(req,res) =>{
+    try{
+        const dbname = req.params.dbname;
+        const collectionname = req.params.collectionname;
+
+        var colletionFind = await Collection.findOne({$and : [{dbname : dbname} , {collectionname : collectionname}]});
+        //console.log(colletionFind);
+        var listOfEnt =  colletionFind['listOfEnt'];
+        console.log(listOfEnt);
+        var dataOfCollection = await Data.find({$and: [{dbname : dbname} , {collectionname : collectionname}]});
+        //console.log(dataOfCollection)
+        var renderData = {
+            Ents : listOfEnt,
+            dataCol : dataOfCollection,
+            dbname : dbname,
+            collectionname : collectionname
+        };
+
+        res.render('db/specificCollection',renderData);
+    }catch(err){
+        console.log(err);
+        res.redirect('/error');
+    }
+}
 
 
 

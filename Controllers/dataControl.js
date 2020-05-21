@@ -26,7 +26,7 @@ exports.getInsertData = async(req,res) => {
         res.render('data/insertData', data);
     }catch(err){
         console.log(err);
-        res.render('error' , {mesg : "database not found"});
+        res.redirect('/error')
     }
 }
 
@@ -34,7 +34,7 @@ exports.getInsertData = async(req,res) => {
 exports.postInsertData = async(req , res) => {
     const body = req.body;
     try{
-        console.log(body);
+        //console.log(body);
         var dbname = req.params.dbname;
         dbname.trim();
         var collectionname = req.params.collectionname;
@@ -52,8 +52,8 @@ exports.postInsertData = async(req , res) => {
         for(var i = 0 ; i < list.length ; i++){
             jsonD[list[i]] = data[i];
         }
-        var jsonStr = toString(jsonD);
-
+        var jsonStr = JSON.stringify(jsonD);
+        //console.log(jsonStr);
         const newData = new Data({
             collectionname : collectionname,
             dbname : dbname,
@@ -64,5 +64,6 @@ exports.postInsertData = async(req , res) => {
         
     }catch(err){
         console.log(err);
+        res.redirect('/error');
     }
 }
